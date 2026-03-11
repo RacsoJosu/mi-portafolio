@@ -45,7 +45,7 @@ const Background = React.forwardRef<HTMLDivElement, HeroBackgroundProps>(
         <img
           src={imgSrc}
           alt={imgAlt}
-          className="w-full h-full object-cover object-center opacity-60 flex-shrink-0"
+          className="w-full h-full object-cover object-top opacity-60 flex-shrink-0"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-background via-background/40 to-transparent" />
         <div className="absolute inset-0 bg-gradient-to-t from-background via-background/10 to-transparent" />

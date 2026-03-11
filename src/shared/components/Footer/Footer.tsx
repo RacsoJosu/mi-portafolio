@@ -6,7 +6,7 @@ export function Footer() {
           © 2026 Full Stack Developer. Todos los derechos reservados.
         </p>
         <p className="text-gray-400">
-          Hecho con <span className="text-[#4D49FC]">♥</span> usando React + TanStack Start
+          Hecho con <span className="text-primary">♥</span> usando React + TanStack Start
         </p>
       </div>
     </footer>

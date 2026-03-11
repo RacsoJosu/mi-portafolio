@@ -14,7 +14,7 @@ export function Contact() {
         >
           <h2 className="text-4xl mb-16 text-center">
             <span className="text-white">Hablemos</span>{' '}
-            <span className="text-[#4D49FC]">juntos</span>
+            <span className="text-primary">juntos</span>
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
             <ContactInfo />

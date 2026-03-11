@@ -25,11 +25,12 @@ function HomePage() {
               Desarrollador full stack especializado en crear aplicaciones web
               modernas, escalables y de alto rendimiento usando las últimas tecnologías.
             </Hero.Subtitle>
-            <Hero.Actions>
+            <Hero.Actions
+            className=' flex flex-col sm:flex-row gap-4'>
               <Link
                 to="/"
                 hash="contact"
-                className="bg-primary text-primary-foreground px-8 py-3 hover:bg-primary/90 transition-colors"
+                className="bg-primary/80 text-primary-foreground px-8 py-3 hover:bg-primary/90 transition-colors"
               >
                 Contáctame
               </Link>
@@ -42,13 +43,13 @@ function HomePage() {
               </Link>
             </Hero.Actions>
             <Hero.Social>
-              <Hero.SocialLink href="https://github.com">
+              <Hero.SocialLink href="https://github.com/RacsoJosu">
                 <Github size={24} />
               </Hero.SocialLink>
-              <Hero.SocialLink href="https://linkedin.com">
+              <Hero.SocialLink href="https://www.linkedin.com/in/oscar-vallecillo-938127254/">
                 <Linkedin size={24} />
               </Hero.SocialLink>
-              <Hero.SocialLink href="mailto:contact@example.com">
+              <Hero.SocialLink href="mailto:oscarvallecillo95@gmail.com">
                 <Mail size={24} />
               </Hero.SocialLink>
             </Hero.Social>

@@ -14,21 +14,21 @@ export function ProjectCard({ project, index }: Props) {
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, delay: index * 0.2 }}
       viewport={{ once: true }}
-      className="border border-[#1a1a1a] p-8 hover:border-[#4D49FC] transition-colors group"
+      className="border border-[#1a1a1a] p-8 hover:border-primary transition-colors group"
     >
       <div className="flex justify-between items-start mb-4">
         <h3 className="text-2xl text-white">{project.title}</h3>
         <div className="flex gap-4">
           <a
             href={project.github}
-            className="text-gray-400 hover:text-[#4D49FC] transition-colors"
+            className="text-gray-400 hover:text-primary transition-colors"
             aria-label={`Código fuente de ${project.title}`}
           >
             <Github size={20} />
           </a>
           <a
             href={project.live}
-            className="text-gray-400 hover:text-[#4D49FC] transition-colors"
+            className="text-gray-400 hover:text-primary transition-colors"
             aria-label={`Demo de ${project.title}`}
           >
             <ExternalLink size={20} />
@@ -40,7 +40,7 @@ export function ProjectCard({ project, index }: Props) {
         {project.tech.map((tech) => (
           <span
             key={tech}
-            className="text-sm px-3 py-1 border border-[#4D49FC] text-[#4D49FC]"
+            className="text-sm px-3 py-1 border border-primary text-primary"
           >
             {tech}
           </span>

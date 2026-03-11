@@ -42,7 +42,7 @@ interface HeaderLinkProps extends React.AnchorHTMLAttributes<HTMLAnchorElement> 
 const Link = React.forwardRef<HTMLAnchorElement, HeaderLinkProps>(({ className, children, ...props }, ref) => (
   <a
     ref={ref}
-    className={cn('text-foreground/80 hover:text-primary transition-colors', className)}
+    className={cn('text-foreground/80 text-lg hover:text-primary transition-colors', className)}
     {...props}
   >
     {children}

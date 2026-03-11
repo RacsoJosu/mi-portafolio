@@ -41,7 +41,7 @@ export function Projects() {
         >
           <h2 className="text-4xl mb-16 text-center">
             <span className="text-white">Proyectos</span>{' '}
-            <span className="text-[#4D49FC]">Destacados</span>
+            <span className="text-primary">Destacados</span>
           </h2>
           <div className="space-y-12">
             {projects.map((project, idx) => (

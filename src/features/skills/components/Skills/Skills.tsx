@@ -28,7 +28,7 @@ export function Skills() {
           viewport={{ once: true }}
         >
           <h2 className="text-4xl mb-16 text-center">
-            <span className="text-[#4D49FC]">Skills</span>{' '}
+            <span className="text-primary">Skills</span>{' '}
             <span className="text-white">&</span>{' '}
             <span className="text-white">Tecnologías</span>
           </h2>
