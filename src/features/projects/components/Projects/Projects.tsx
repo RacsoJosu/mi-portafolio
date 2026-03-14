@@ -4,35 +4,65 @@ import { ProjectCard } from './ProjectCard'
 
 const projects: Project[] = [
   {
-    title: 'E-Commerce Platform',
+    title: 'RedMedicaTel',
     description:
-      'Plataforma de comercio electrónico full stack con React, NestJS y PostgreSQL. Incluye pagos con Stripe y panel de administración.',
-    tech: ['React', 'NestJS', 'TypeScript', 'PostgreSQL', 'AWS'],
-    github: '#',
-    live: '#',
+      'Plataforma digital de salud con sede en Honduras diseñada para facilitar el acceso a servicios médicos, conectando a pacientes con médicos especialistas y ofreciendo gestión de salud digital.',
+    tech: ['Next.js', 'shadcn/ui', 'Tailwind CSS', 'TypeScript'],
+    github: 'https://github.com/RacsoJosu',
+    live: 'https://redmedicatel.com/',
+    image: 'https://api.microlink.io/?url=https://redmedicatel.com/&screenshot=true&meta=false&embed=screenshot.url',
   },
   {
-    title: 'API Gateway',
+    title: 'Shinball Fronted',
     description:
-      'Gateway de API serverless construido con AWS Lambda, API Gateway y DynamoDB. Maneja autenticación, rate limiting y logging.',
-    tech: ['AWS Lambda', 'Node.js', 'DynamoDB', 'CDK'],
-    github: '#',
-    live: '#',
+      'Dashboard administrativo para la gestión de reservas de propiedades y vehículos, con visualizaciones analíticas y gestión de usuarios.',
+    tech: ['React', 'TypeScript', 'Vite', 'Tailwind CSS'],
+    github: 'https://github.com/RacsoJosu/shinball-fronted',
+    live: 'https://shinball-fronted.vercel.app/login',
+    image: 'https://api.microlink.io/?url=https://shinball-fronted.vercel.app/login&screenshot=true&meta=false&embed=screenshot.url',
   },
   {
-    title: 'Real-time Dashboard',
+    title: 'Store React',
     description:
-      'Dashboard en tiempo real con Next.js, GraphQL subscriptions y WebSockets. Visualización de datos con Recharts.',
-    tech: ['Next.js', 'GraphQL', 'WebSockets', 'Tailwind CSS'],
-    github: '#',
-    live: '#',
+      'Aplicación moderna de comercio electrónico con listado de productos, vistas detalladas y gestión de carrito de compras.',
+    tech: ['React', 'TypeScript', 'Vite', 'PNPM'],
+    github: 'https://github.com/RacsoJosu/Store-React',
+    live: 'https://store-react-alpha.vercel.app/',
+    image: 'https://api.microlink.io/?url=https://store-react-alpha.vercel.app/&screenshot=true&meta=false&embed=screenshot.url',
+  },
+  {
+    title: 'Pokedex App',
+    description:
+      'Pokedex interactiva que consume la PokeAPI, con paginación y caché local mediante IndexedDB para una mejor experiencia.',
+    tech: ['React', 'Redux', 'Tailwind CSS', 'IndexedDB', 'JavaScript'],
+    github: 'https://github.com/RacsoJosu/Pokedex',
+    live: 'https://pokedex-nu-cyan.vercel.app/',
+    image: 'https://api.microlink.io/?url=https://pokedex-nu-cyan.vercel.app/&screenshot=true&meta=false&embed=screenshot.url',
+  },
+  {
+    title: 'Items Store API',
+    description:
+      'API robusta para una plataforma de ventas de productos, construida con arquitectura moderna y una interfaz GraphQL.',
+    tech: ['NestJS', 'GraphQL', 'TypeScript', 'Prisma', 'PostgreSQL'],
+    github: 'https://github.com/RacsoJosu/Items-Store',
+    live: 'https://github.com/RacsoJosu/Items-Store',
+    image: 'https://api.microlink.io/?url=https://github.com/RacsoJosu/Items-Store&screenshot=true&meta=false&embed=screenshot.url',
+  },
+  {
+    title: 'AWS Serverless CRUD',
+    description:
+      'Implementación de backend serverless para una API CRUD utilizando servicios de AWS como Lambda, DynamoDB y API Gateway.',
+    tech: ['TypeScript', 'AWS CDK', 'AWS Lambda', 'DynamoDB', 'API Gateway'],
+    github: 'https://github.com/RacsoJosu/api-gateway-dynamo-db-serverless-crud',
+    live: 'https://github.com/RacsoJosu/api-gateway-dynamo-db-serverless-crud',
+    image: 'https://api.microlink.io/?url=https://github.com/RacsoJosu/api-gateway-dynamo-db-serverless-crud&screenshot=true&meta=false&embed=screenshot.url',
   },
 ]
 
 export function Projects() {
   return (
     <section id="projects" className="min-h-screen flex items-center justify-center px-6 py-20">
-      <div className="max-w-6xl w-full">
+      <div className="max-w-7xl w-full">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -43,7 +73,7 @@ export function Projects() {
             <span className="text-white">Proyectos</span>{' '}
             <span className="text-primary">Destacados</span>
           </h2>
-          <div className="space-y-12">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {projects.map((project, idx) => (
               <ProjectCard key={project.title} project={project} index={idx} />
             ))}

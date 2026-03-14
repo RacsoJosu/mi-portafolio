@@ -56,8 +56,8 @@ function HomePage() {
           </Hero.Main>
         </Hero.Container>
       </Hero.Root>
-      <Skills />
       <Projects />
+      <Skills />
       <Contact />
     </>
   )

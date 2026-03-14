@@ -4,4 +4,5 @@ export type Project = {
   tech: string[]
   github: string
   live: string
+  image?: string
 }
