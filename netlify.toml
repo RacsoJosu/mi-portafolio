@@ -1,6 +1,6 @@
 [build]
 command = "vite build"
-publish = ".netlify/static"
+publish = ".output/public"
 
 
 [build.environment]
