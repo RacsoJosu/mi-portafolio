@@ -19,7 +19,7 @@ export function ProjectCard({ project, index }: Props) {
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, delay: index * 0.2 }}
       viewport={{ once: true }}
-      className="[perspective:1000px] group h-[480px] hidden lg:block"
+      className="[perspective:1000px] group aspect-[4/3] hidden lg:block"
       onClick={() => setIsFlipped(!isFlipped)}
     >
       {/* Flip wrapper */}
@@ -111,23 +111,23 @@ export function ProjectCard({ project, index }: Props) {
           </div>
 
           {/* Links */}
-          <div className="flex flex-col xl:flex-row items-center justify-center gap-3 xl:gap-4" onClick={(e) => e.stopPropagation()}>
+          <div className="flex flex-col xl:flex-row items-center justify-center gap-3 xl:gap-6" onClick={(e) => e.stopPropagation()}>
             <a
               href={project.github}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full xl:flex-1 flex items-center justify-center gap-2 px-3 py-2 rounded-lg border border-border hover:border-primary hover:text-primary transition-colors text-muted-foreground text-xs font-medium"
+              className="w-full xl:flex-1 flex items-center justify-center gap-2 px-4 py-2 rounded-lg border border-border hover:border-primary hover:text-primary transition-colors text-muted-foreground text-sm font-medium"
             >
-              <Github size={16} />
+              <Github size={18} />
               GitHub
             </a>
             <a
               href={project.live}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full xl:flex-1 flex items-center justify-center gap-2 px-3 py-2 rounded-lg bg-primary/10 border border-primary/30 text-primary hover:bg-primary/20 transition-colors text-xs font-medium"
+              className="w-full xl:flex-1 flex items-center justify-center gap-2 px-4 py-2 rounded-lg bg-primary/10 border border-primary/30 text-primary hover:bg-primary/20 transition-colors text-sm font-medium"
             >
-              <ExternalLink size={16} />
+              <ExternalLink size={18} />
               Ver proyecto
             </a>
           </div>

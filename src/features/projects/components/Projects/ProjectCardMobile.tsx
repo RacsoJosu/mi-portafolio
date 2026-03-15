@@ -19,7 +19,7 @@ export function ProjectCardMobile({ project, index }: Props) {
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, delay: index * 0.1 }}
       viewport={{ once: true }}
-      className="[perspective:1000px] w-full h-[540px] lg:hidden relative"
+      className="[perspective:1000px] w-full h-[480px] lg:hidden relative"
       onClick={() => setIsFlipped(!isFlipped)}
     >
       {/* Flip wrapper */}
