@@ -1,6 +1,8 @@
+import { useState } from 'react'
 import { motion } from 'motion/react'
 import { ExternalLink, Github } from 'lucide-react'
 import type { Project } from './Projects.types'
+import { cn } from '#/shared/components/ui/utils'
 
 type Props = {
   project: Project
@@ -8,22 +10,25 @@ type Props = {
 }
 
 export function ProjectCard({ project, index }: Props) {
+  const [isFlipped, setIsFlipped] = useState(false)
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, delay: index * 0.2 }}
       viewport={{ once: true }}
-      // perspective container
-      className="[perspective:1000px] group aspect-[4/3]"
+      className="[perspective:1000px] group aspect-[4/3] cursor-pointer"
+      onClick={() => setIsFlipped(!isFlipped)}
     >
       {/* Flip wrapper */}
       <div
-        className="
-          relative w-full h-full transition-transform duration-700 ease-in-out
-          [transform-style:preserve-3d]
-          group-hover:[transform:rotateY(180deg)]
-        "
+        className={cn(
+          "relative w-full h-full transition-transform duration-700 ease-in-out [transform-style:preserve-3d]",
+          // Flip on hover (desktop) OR on state (mobile/click)
+          (isFlipped || "group-hover:[transform:rotateY(180deg)]") && 
+          (isFlipped ? "[transform:rotateY(180deg)]" : "")
+        )}
       >
         {/* ──────────── FRONT FACE ──────────── */}
         <div
@@ -88,7 +93,7 @@ export function ProjectCard({ project, index }: Props) {
           </h3>
 
           {/* Description */}
-          <p className="text-muted-foreground leading-relaxed text-sm flex-1 overflow-auto">
+          <p className="text-muted-foreground leading-relaxed text-sm flex-1 overflow-auto no-scrollbar">
             {project.description}
           </p>
 
@@ -104,14 +109,13 @@ export function ProjectCard({ project, index }: Props) {
             ))}
           </div>
 
-          {/* Links — centrados al fondo */}
-          <div className="flex items-center justify-center gap-6">
+          {/* Links */}
+          <div className="flex items-center justify-center gap-6" onClick={(e) => e.stopPropagation()}>
             <a
               href={project.github}
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-2 px-4 py-2 rounded-lg border border-border hover:border-primary hover:text-primary transition-colors text-muted-foreground text-sm font-medium"
-              title="Ver código en GitHub"
             >
               <Github size={18} />
               GitHub
@@ -121,7 +125,6 @@ export function ProjectCard({ project, index }: Props) {
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-2 px-4 py-2 rounded-lg bg-primary/10 border border-primary/30 text-primary hover:bg-primary/20 transition-colors text-sm font-medium"
-              title="Ver sitio en vivo"
             >
               <ExternalLink size={18} />
               Ver sitio
