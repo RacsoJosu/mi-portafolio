@@ -49,7 +49,7 @@ function HomePage() {
               <Hero.SocialLink href="https://www.linkedin.com/in/oscar-vallecillo-938127254/">
                 <Linkedin size={24} />
               </Hero.SocialLink>
-              <Hero.SocialLink href="mailto:oscarvallecillo95@gmail.com">
+              <Hero.SocialLink href="mailto:oscarvallecillo.dev@gmail.com">
                 <Mail size={24} />
               </Hero.SocialLink>
             </Hero.Social>

@@ -12,14 +12,18 @@
     "test": "vitest run"
   },
   "dependencies": {
+    "@emailjs/browser": "^4.4.1",
     "@radix-ui/react-slot": "^1.2.4",
     "@tailwindcss/vite": "^4.1.18",
     "@tanstack/react-devtools": "latest",
+    "@tanstack/react-form": "^1.28.5",
+    "@tanstack/react-query": "^5.90.21",
     "@tanstack/react-router": "latest",
     "@tanstack/react-router-devtools": "latest",
     "@tanstack/react-router-ssr-query": "latest",
     "@tanstack/react-start": "latest",
     "@tanstack/router-plugin": "^1.132.0",
+    "@tanstack/zod-form-adapter": "^0.42.1",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "lucide-react": "^0.545.0",
@@ -29,7 +33,8 @@
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
     "tailwind-merge": "^3.5.0",
-    "tailwindcss": "^4.1.18"
+    "tailwindcss": "^4.1.18",
+    "zod": "^3.24.2"
   },
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.16",

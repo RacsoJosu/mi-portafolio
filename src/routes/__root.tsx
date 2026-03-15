@@ -1,6 +1,9 @@
 import { HeadContent, Scripts, createRootRoute } from '@tanstack/react-router'
 import { TanStackRouterDevtoolsPanel } from '@tanstack/react-router-devtools'
 import { TanStackDevtools } from '@tanstack/react-devtools'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+
+const queryClient = new QueryClient()
 
 import appCss from '../styles.css?url'
 import { Header } from '#/shared/components/Header'
@@ -57,7 +60,9 @@ function RootDocument({ children }: { children: React.ReactNode }) {
           </Header.Nav>
         </Header.Root>
         <main className="flex-1 overflow-y-auto w-full no-scrollbar">
-          {children}
+          <QueryClientProvider client={queryClient}>
+            {children}
+          </QueryClientProvider>
           <Footer />
         </main>
         <TanStackDevtools
