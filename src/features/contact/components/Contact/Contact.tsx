@@ -13,8 +13,8 @@ export function Contact() {
           viewport={{ once: true }}
         >
           <h2 className="text-4xl mb-16 text-center">
-            <span className="text-white">Hablemos</span>{' '}
-            <span className="text-primary">juntos</span>
+            <span className="text-white">Contáctame</span>{' '}
+            <span className="text-primary">y trabajemos juntos</span>
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
             <ContactInfo />
