@@ -1,3 +1,4 @@
+import * as React from 'react'
 import { HeadContent, Scripts, createRootRoute } from '@tanstack/react-router'
 import { TanStackRouterDevtoolsPanel } from '@tanstack/react-router-devtools'
 import { TanStackDevtools } from '@tanstack/react-devtools'
@@ -10,7 +11,7 @@ import { Header } from '#/shared/components/Header'
 import { Footer } from '#/shared/components/Footer'
 import { useActiveSection } from '#/shared/hooks/useActiveSection'
 
-const SECTIONS = ['about', 'projects', 'skills', 'contact']
+const SECTIONS = ['about', 'projects', 'habilidades', 'contact']
 
 export const Route = createRootRoute({
   head: () => ({
@@ -45,6 +46,10 @@ export const Route = createRootRoute({
 
 function RootDocument({ children }: { children: React.ReactNode }) {
   const activeSection = useActiveSection(SECTIONS)
+  const [isMenuOpen, setIsMenuOpen] = React.useState(false)
+
+  const toggleMenu = () => setIsMenuOpen(!isMenuOpen)
+  const closeMenu = () => setIsMenuOpen(false)
 
   return (
     <html lang="en" data-theme="dark" suppressHydrationWarning>
@@ -58,13 +63,27 @@ function RootDocument({ children }: { children: React.ReactNode }) {
       >
         <Header.Root>
           <Header.Brand />
+          
+          {/* Desktop Nav */}
           <Header.Nav>
             <Header.Link href="#about" active={activeSection === 'about'}>Sobre mí</Header.Link>
             <Header.Link href="#projects" active={activeSection === 'projects'}>Proyectos</Header.Link>
-            <Header.Link href="#skills" active={activeSection === 'skills'}>Skills</Header.Link>
+            <Header.Link href="#habilidades" active={activeSection === 'habilidades'}>Habilidades</Header.Link>
             <Header.Link href="#contact" active={activeSection === 'contact'}>Contacto</Header.Link>
           </Header.Nav>
+
+          {/* Mobile Toggle */}
+          <Header.Toggle isOpen={isMenuOpen} onClick={toggleMenu} />
+
+          {/* Mobile Overlay */}
+          <Header.MobileOverlay isOpen={isMenuOpen}>
+            <Header.Link href="#about" active={activeSection === 'about'} onClick={closeMenu} className="text-2xl">Sobre mí</Header.Link>
+            <Header.Link href="#projects" active={activeSection === 'projects'} onClick={closeMenu} className="text-2xl">Proyectos</Header.Link>
+            <Header.Link href="#habilidades" active={activeSection === 'habilidades'} onClick={closeMenu} className="text-2xl">Habilidades</Header.Link>
+            <Header.Link href="#contact" active={activeSection === 'contact'} onClick={closeMenu} className="text-2xl">Contacto</Header.Link>
+          </Header.MobileOverlay>
         </Header.Root>
+
         <main className="flex-1 overflow-y-auto w-full no-scrollbar">
           <QueryClientProvider client={queryClient}>
             {children}

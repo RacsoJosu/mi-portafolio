@@ -33,7 +33,7 @@ const skillCategories: SkillCategory[] = [
     ],
   },
   {
-    title: 'DevOps & Cloud',
+    title: 'DevOps y Nube',
     skills: [
       { name: 'AWS CDK', icon: 'amazonaws' },
       { name: 'AWS Lambda', icon: 'amazons3' }, // S3 is more recognizable if specific lambda fails, but let's try 'awslambda' is not on CDN
@@ -50,7 +50,7 @@ export function Skills() {
   const [activeTab, setActiveTab] = useState(0)
 
   return (
-    <section id="skills" className="min-h-fit flex items-center justify-center px-6 pt-24 pb-12 bg-background/50 relative overflow-hidden">
+    <section id="habilidades" className="min-h-fit flex items-center justify-center px-6 pt-24 pb-12 bg-background/50 relative overflow-hidden">
       {/* Background purely decorative blob */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-primary/5 blur-[120px] rounded-full -z-10" />
       
@@ -63,9 +63,9 @@ export function Skills() {
         >
           <div className="text-center mb-16">
             <h2 className="text-5xl font-bold mb-4 tracking-tight">
-              <span className="text-primary">Skills</span>{' '}
+              <span className="text-primary">Habilidades</span>{' '}
               <span className="text-muted-foreground">&</span>{' '}
-              <span className="text-white">Technologies</span>
+              <span className="text-white">Tecnologías</span>
             </h2>
             <p className="text-muted-foreground max-w-2xl mx-auto">
               Tecnologías favoritas y herramientas que utilizo para dar vida a productos digitales excepcionales.
@@ -74,26 +74,28 @@ export function Skills() {
 
           {/* Tabs Navigation */}
           <div className="flex justify-center mb-12">
-            <div className="flex bg-muted/20 p-1.5 rounded-full border border-border/50 backdrop-blur-sm relative print:hidden">
-              {skillCategories.map((category, idx) => (
-                <button
-                  key={category.title}
-                  onClick={() => setActiveTab(idx)}
-                  className={`
-                    px-8 py-2.5 rounded-full text-sm font-medium transition-all duration-300 relative z-10
-                    ${activeTab === idx ? 'text-primary-foreground' : 'text-muted-foreground hover:text-white'}
-                  `}
-                >
-                  {category.title}
-                  {activeTab === idx && (
-                    <motion.div
-                      layoutId="activeSkillTab"
-                      className="absolute inset-0 bg-primary rounded-full -z-10"
-                      transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
-                    />
-                  )}
-                </button>
-              ))}
+            <div className="max-w-full overflow-x-auto no-scrollbar pb-2">
+              <div className="flex bg-muted/20 p-1.5 rounded-full border border-border/50 backdrop-blur-sm relative print:hidden w-max mx-auto min-w-80">
+                {skillCategories.map((category, idx) => (
+                  <button
+                    key={category.title}
+                    onClick={() => setActiveTab(idx)}
+                    className={`
+                      px-6 md:px-8 py-2.5 rounded-full text-xs md:text-sm font-medium transition-all duration-300 relative z-10 whitespace-nowrap
+                      ${activeTab === idx ? 'text-primary-foreground' : 'text-muted-foreground hover:text-white'}
+                    `}
+                  >
+                    {category.title}
+                    {activeTab === idx && (
+                      <motion.div
+                        layoutId="activeSkillTab"
+                        className="absolute inset-0 bg-primary rounded-full -z-10"
+                        transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                      />
+                    )}
+                  </button>
+                ))}
+              </div>
             </div>
           </div>
 

@@ -75,7 +75,7 @@ export function Projects() {
             <span className="text-white">Proyectos</span>{' '}
             <span className="text-primary">Destacados</span>
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
             {projects.map((project, idx) => (
               <React.Fragment key={project.title}>
                 <ProjectCard project={project} index={idx} />

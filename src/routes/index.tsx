@@ -18,9 +18,9 @@ function HomePage() {
         <Hero.Container>
           <Hero.Main>
             <Hero.Title>
-              <span className="text-foreground">Full Stack</span>
+              <span className="text-foreground">Desarrollador</span>
               <br />
-              <span className="text-primary">Developer</span>
+              <span className="text-primary">Full Stack</span>
             </Hero.Title>
             <Hero.Subtitle>
               Desarrollador full stack especializado en crear aplicaciones web

@@ -1,5 +1,7 @@
+import { useState } from 'react'
 import { motion } from 'motion/react'
 import { ExternalLink, Github } from 'lucide-react'
+import { cn } from '#/shared/components/ui/utils'
 import type { Project } from './Projects.types'
 
 type Props = {
@@ -7,23 +9,25 @@ type Props = {
   index: number
 }
 
-// ──────────── DESKTOP COMPONENT (Hover only) ────────────
+// ──────────── DESKTOP COMPONENT (Hover + Click support) ────────────
 export function ProjectCard({ project, index }: Props) {
+  const [isFlipped, setIsFlipped] = useState(false)
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, delay: index * 0.2 }}
       viewport={{ once: true }}
-      className="[perspective:1000px] group aspect-[4/3] hidden md:block"
+      className="[perspective:1000px] group h-[480px] hidden lg:block"
+      onClick={() => setIsFlipped(!isFlipped)}
     >
       {/* Flip wrapper */}
       <div
-        className="
-          relative w-full h-full transition-transform duration-700 ease-in-out
-          [transform-style:preserve-3d]
-          group-hover:[transform:rotateY(180deg)]
-        "
+        className={cn(
+          "relative w-full h-full transition-transform duration-700 ease-in-out [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]",
+          isFlipped && "[transform:rotateY(180deg)]"
+        )}
       >
         {/* ──────────── FRONT FACE ──────────── */}
         <div
@@ -52,7 +56,7 @@ export function ProjectCard({ project, index }: Props) {
               <img
                 src={project.image}
                 alt={`Vista previa de ${project.title}`}
-                className="w-full h-full object-cover object-top"
+                className="w-full h-full object-cover object-center"
                 loading="lazy"
               />
             ) : (
@@ -88,9 +92,11 @@ export function ProjectCard({ project, index }: Props) {
           </h3>
 
           {/* Description */}
-          <p className="text-muted-foreground leading-relaxed text-sm flex-1 overflow-auto no-scrollbar">
-            {project.description}
-          </p>
+          <div className="flex-1 overflow-y-auto no-scrollbar pr-1 mb-4">
+            <p className="text-muted-foreground leading-relaxed text-sm">
+              {project.description}
+            </p>
+          </div>
 
           {/* Tech badges */}
           <div className="flex flex-wrap gap-2 my-4">
@@ -105,24 +111,24 @@ export function ProjectCard({ project, index }: Props) {
           </div>
 
           {/* Links */}
-          <div className="flex items-center justify-center gap-6">
+          <div className="flex flex-col xl:flex-row items-center justify-center gap-3 xl:gap-4" onClick={(e) => e.stopPropagation()}>
             <a
               href={project.github}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-2 px-4 py-2 rounded-lg border border-border hover:border-primary hover:text-primary transition-colors text-muted-foreground text-sm font-medium"
+              className="w-full xl:flex-1 flex items-center justify-center gap-2 px-3 py-2 rounded-lg border border-border hover:border-primary hover:text-primary transition-colors text-muted-foreground text-xs font-medium"
             >
-              <Github size={18} />
+              <Github size={16} />
               GitHub
             </a>
             <a
               href={project.live}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-2 px-4 py-2 rounded-lg bg-primary/10 border border-primary/30 text-primary hover:bg-primary/20 transition-colors text-sm font-medium"
+              className="w-full xl:flex-1 flex items-center justify-center gap-2 px-3 py-2 rounded-lg bg-primary/10 border border-primary/30 text-primary hover:bg-primary/20 transition-colors text-xs font-medium"
             >
-              <ExternalLink size={18} />
-              Ver sitio
+              <ExternalLink size={16} />
+              Ver proyecto
             </a>
           </div>
         </div>
