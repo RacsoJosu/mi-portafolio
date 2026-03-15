@@ -1,29 +1,33 @@
+import { useState } from 'react'
 import { motion } from 'motion/react'
 import { ExternalLink, Github } from 'lucide-react'
 import type { Project } from './Projects.types'
+import { cn } from '#/shared/components/ui/utils'
 
 type Props = {
   project: Project
   index: number
 }
 
-// ──────────── DESKTOP COMPONENT (Hover only) ────────────
-export function ProjectCard({ project, index }: Props) {
+// ──────────── MOBILE COMPONENT (Click/Tap to flip) ────────────
+export function ProjectCardMobile({ project, index }: Props) {
+  const [isFlipped, setIsFlipped] = useState(false)
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6, delay: index * 0.2 }}
+      transition={{ duration: 0.6, delay: index * 0.1 }}
       viewport={{ once: true }}
-      className="[perspective:1000px] group aspect-[4/3] hidden md:block"
+      className="[perspective:1000px] aspect-[4/3] md:hidden"
+      onClick={() => setIsFlipped(!isFlipped)}
     >
       {/* Flip wrapper */}
       <div
-        className="
-          relative w-full h-full transition-transform duration-700 ease-in-out
-          [transform-style:preserve-3d]
-          group-hover:[transform:rotateY(180deg)]
-        "
+        className={cn(
+          "relative w-full h-full transition-transform duration-700 ease-in-out [transform-style:preserve-3d]",
+          isFlipped && "[transform:rotateY(180deg)]"
+        )}
       >
         {/* ──────────── FRONT FACE ──────────── */}
         <div
@@ -105,12 +109,12 @@ export function ProjectCard({ project, index }: Props) {
           </div>
 
           {/* Links */}
-          <div className="flex items-center justify-center gap-6">
+          <div className="flex items-center justify-center gap-6" onClick={(e) => e.stopPropagation()}>
             <a
               href={project.github}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-2 px-4 py-2 rounded-lg border border-border hover:border-primary hover:text-primary transition-colors text-muted-foreground text-sm font-medium"
+              className="flex items-center gap-2 px-4 py-2 rounded-lg border border-border text-muted-foreground text-sm font-medium"
             >
               <Github size={18} />
               GitHub
@@ -119,7 +123,7 @@ export function ProjectCard({ project, index }: Props) {
               href={project.live}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-2 px-4 py-2 rounded-lg bg-primary/10 border border-primary/30 text-primary hover:bg-primary/20 transition-colors text-sm font-medium"
+              className="flex items-center gap-2 px-4 py-2 rounded-lg bg-primary/10 border border-primary/30 text-primary text-sm font-medium"
             >
               <ExternalLink size={18} />
               Ver sitio
