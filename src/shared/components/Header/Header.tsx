@@ -1,6 +1,8 @@
 import * as React from 'react'
+import { Link as RouterLink, type LinkProps as RouterLinkProps } from '@tanstack/react-router'
 import { cn } from '#/shared/components/ui/utils'
-import { Menu, X } from 'lucide-react'
+import { Menu } from 'lucide-react'
+import { Sheet, SheetContent, SheetHeader, SheetTitle } from '#/shared/components/ui/sheet'
 
 interface HeaderRootProps extends React.HTMLAttributes<HTMLElement> {}
 
@@ -29,90 +31,110 @@ const Brand = React.forwardRef<HTMLDivElement, HeaderBrandProps>(({ className, .
 ))
 Brand.displayName = 'HeaderBrand'
 
+// ──────────── DESKTOP NAVIGATION ────────────
+
 interface HeaderNavProps extends React.HTMLAttributes<HTMLElement> {}
 
-const Nav = React.forwardRef<HTMLElement, HeaderNavProps>(({ className, children, ...props }, ref) => (
+const DesktopNav = React.forwardRef<HTMLElement, HeaderNavProps>(({ className, children, ...props }, ref) => (
   <nav ref={ref} className={cn('hidden md:flex gap-8 items-center', className)} {...props}>
     {children}
   </nav>
 ))
-Nav.displayName = 'HeaderNav'
+DesktopNav.displayName = 'HeaderDesktopNav'
 
-interface HeaderLinkProps extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
-  active?: boolean
+interface HeaderLinkProps extends RouterLinkProps {
+  children: React.ReactNode
+  className?: string
 }
 
-const Link = React.forwardRef<HTMLAnchorElement, HeaderLinkProps>(
-  ({ className, active, children, ...props }, ref) => (
-    <a
-      ref={ref}
+const DesktopLink = ({ className, children, ...props }: HeaderLinkProps) => {
+  return (
+    <RouterLink
       className={cn(
         'text-base transition-all duration-300 relative py-1 px-1',
-        active
-          ? 'text-primary font-medium'
-          : 'text-foreground/70 hover:text-primary',
+        'text-foreground/70 hover:text-primary',
         'after:content-[""] after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-primary after:scale-x-0 after:transition-transform after:duration-300',
-        active && 'after:scale-x-100',
         className
       )}
+      activeProps={{
+        className: 'text-primary font-medium after:scale-x-100',
+      }}
+      activeOptions={{ includeHash: true }}
       {...props}
     >
       {children}
-    </a>
+    </RouterLink>
   )
-)
-Link.displayName = 'HeaderLink'
-
-// ──────────── NEW MOBILE TOGGLE & OVERLAY ────────────
-
-interface HeaderToggleProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  isOpen: boolean
 }
 
-const Toggle = React.forwardRef<HTMLButtonElement, HeaderToggleProps>(
-  ({ className, isOpen, ...props }, ref) => (
-    <button
-      ref={ref}
-      className={cn(
-        'md:hidden p-2 text-foreground focus:outline-none transition-colors hover:text-primary',
-        className
-      )}
-      {...props}
-    >
-      {isOpen ? <X size={28} /> : <Menu size={28} />}
-    </button>
-  )
-)
-Toggle.displayName = 'HeaderToggle'
+// ──────────── MOBILE NAVIGATION ────────────
 
-interface MobileOverlayProps extends React.HTMLAttributes<HTMLDivElement> {
+interface MobileNavProps {
   isOpen: boolean
+  onOpen: () => void
+  onClose: () => void
+  children: React.ReactNode
 }
 
-const MobileOverlay = React.forwardRef<HTMLDivElement, MobileOverlayProps>(
-  ({ className, isOpen, children, ...props }, ref) => (
-    <div
-      ref={ref}
-      className={cn(
-        'fixed inset-0 top-[73px] z-40 bg-background/95 backdrop-blur-lg md:hidden transition-all duration-300 ease-in-out',
-        isOpen ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-full pointer-events-none',
-        className
-      )}
-      {...props}
-    >
-      <nav className="flex flex-col items-center justify-center h-full gap-10 p-6">
-        {children}
-      </nav>
+const MobileNav = ({ isOpen, onOpen, onClose, children }: MobileNavProps) => {
+  return (
+    <div className="md:hidden">
+      <button
+        onClick={onOpen}
+        className="p-2 text-foreground focus:outline-none transition-all hover:text-primary active:scale-95"
+        aria-label="Open menu"
+      >
+        <Menu size={28} />
+      </button>
+      <Sheet>
+        <SheetContent
+          isOpen={isOpen}
+          onClose={onClose}
+          side="right"
+          className="border-l border-border pt-16 shadow-2xl"
+        >
+          <SheetHeader className="absolute top-6 left-6">
+            <SheetTitle>
+              <Brand />
+            </SheetTitle>
+          </SheetHeader>
+          <nav className="flex flex-col gap-6 mt-8">
+            {children}
+          </nav>
+        </SheetContent>
+      </Sheet>
     </div>
   )
-)
-MobileOverlay.displayName = 'MobileOverlay'
+}
+MobileNav.displayName = 'HeaderMobileNav'
+
+const MobileLink = ({ className, children, onClick, ...props }: HeaderLinkProps & { onClick?: React.MouseEventHandler<HTMLAnchorElement> }) => {
+  return (
+    <RouterLink
+      className={cn(
+        'text-xl transition-all duration-300 py-2 px-4 border-l-4 border-transparent',
+        'text-foreground/70 hover:text-primary hover:bg-primary/5',
+        className
+      )}
+      activeProps={{
+        className: 'text-primary font-medium border-primary bg-primary/10',
+      }}
+      activeOptions={{ includeHash: true }}
+      onClick={onClick}
+      {...props}
+    >
+      {children}
+    </RouterLink>
+  )
+}
 
 export const Header = {
   Root,
   Brand,
-  Nav,
-  Link,
-  Toggle,
-  MobileOverlay,
+  DesktopNav,
+  MobileNav,
+  Link: DesktopLink,
+  DesktopLink,
+  MobileLink,
+  Nav: DesktopNav,
 }

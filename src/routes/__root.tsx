@@ -45,7 +45,7 @@ export const Route = createRootRoute({
 })
 
 function RootDocument({ children }: { children: React.ReactNode }) {
-  const activeSection = useActiveSection(SECTIONS)
+  useActiveSection(SECTIONS, 'main-container')
   const [isMenuOpen, setIsMenuOpen] = React.useState(false)
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen)
@@ -59,32 +59,27 @@ function RootDocument({ children }: { children: React.ReactNode }) {
       </head>
       <body
         suppressHydrationWarning
-        className="font-sans antialiased [overflow-wrap:anywhere] selection:bg-[rgba(79,184,178,0.24)] h-screen overflow-hidden flex flex-col"
+        className="font-sans antialiased wrap-anywhere selection:bg-[rgba(79,184,178,0.24)] h-screen overflow-hidden flex flex-col"
       >
         <Header.Root>
           <Header.Brand />
-          
-          {/* Desktop Nav */}
-          <Header.Nav>
-            <Header.Link href="#about" active={activeSection === 'about'}>Sobre mí</Header.Link>
-            <Header.Link href="#projects" active={activeSection === 'projects'}>Proyectos</Header.Link>
-            <Header.Link href="#habilidades" active={activeSection === 'habilidades'}>Habilidades</Header.Link>
-            <Header.Link href="#contact" active={activeSection === 'contact'}>Contacto</Header.Link>
-          </Header.Nav>
 
-          {/* Mobile Toggle */}
-          <Header.Toggle isOpen={isMenuOpen} onClick={toggleMenu} />
+        <Header.DesktopNav>
+          <Header.DesktopLink to="/" hash="about">Sobre mí</Header.DesktopLink>
+          <Header.DesktopLink to="/" hash="projects">Proyectos</Header.DesktopLink>
+          <Header.DesktopLink to="/" hash="habilidades">Habilidades</Header.DesktopLink>
+          <Header.DesktopLink to="/" hash="contact">Contacto</Header.DesktopLink>
+        </Header.DesktopNav>
 
-          {/* Mobile Overlay */}
-          <Header.MobileOverlay isOpen={isMenuOpen}>
-            <Header.Link href="#about" active={activeSection === 'about'} onClick={closeMenu} className="text-2xl">Sobre mí</Header.Link>
-            <Header.Link href="#projects" active={activeSection === 'projects'} onClick={closeMenu} className="text-2xl">Proyectos</Header.Link>
-            <Header.Link href="#habilidades" active={activeSection === 'habilidades'} onClick={closeMenu} className="text-2xl">Habilidades</Header.Link>
-            <Header.Link href="#contact" active={activeSection === 'contact'} onClick={closeMenu} className="text-2xl">Contacto</Header.Link>
-          </Header.MobileOverlay>
+        <Header.MobileNav isOpen={isMenuOpen} onOpen={toggleMenu} onClose={closeMenu}>
+          <Header.MobileLink to="/" hash="about" onClick={closeMenu}>Sobre mí</Header.MobileLink>
+          <Header.MobileLink to="/" hash="projects" onClick={closeMenu}>Proyectos</Header.MobileLink>
+          <Header.MobileLink to="/" hash="habilidades" onClick={closeMenu}>Habilidades</Header.MobileLink>
+          <Header.MobileLink to="/" hash="contact" onClick={closeMenu}>Contacto</Header.MobileLink>
+        </Header.MobileNav>
         </Header.Root>
 
-        <main className="flex-1 overflow-y-auto w-full no-scrollbar">
+        <main id="main-container" className="flex-1 overflow-y-auto w-full no-scrollbar">
           <QueryClientProvider client={queryClient}>
             {children}
           </QueryClientProvider>
