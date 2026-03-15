@@ -3,7 +3,8 @@ import { Hero } from '@/features/hero/components/Hero'
 import { Skills } from '@/features/skills/components/Skills'
 import { Projects } from '@/features/projects/components/Projects'
 import { Contact } from '@/features/contact/components/Contact'
-import { Github, Linkedin, Mail } from 'lucide-react'
+import { Github, Linkedin, Mail, Download } from 'lucide-react'
+import cvPdf from '@/assets/docs/Currículum_Vitae_Oscar_Vallecillo.pdf'
 
 export const Route = createFileRoute('/')({
   component: HomePage,
@@ -12,7 +13,7 @@ export const Route = createFileRoute('/')({
 function HomePage() {
   return (
     <>
-      <Hero.Root>
+      <Hero.Root id="about">
         <Hero.Background />
         <Hero.Container>
           <Hero.Main>
@@ -27,13 +28,25 @@ function HomePage() {
             </Hero.Subtitle>
             <Hero.Actions
             className=' flex flex-col sm:flex-row gap-4'>
-              <Link
-                to="/"
-                hash="contact"
-                className="bg-primary/80 text-primary-foreground px-8 py-3 hover:bg-primary/90 transition-colors"
+              <button
+                type="button"
+                onClick={async () => {
+                  const res = await fetch(cvPdf)
+                  const blob = await res.blob()
+                  const url = URL.createObjectURL(blob)
+                  const link = document.createElement('a')
+                  link.href = url
+                  link.download = 'CV_Oscar_Vallecillo.pdf'
+                  document.body.appendChild(link)
+                  link.click()
+                  link.remove()
+                  URL.revokeObjectURL(url)
+                }}
+                className="inline-flex items-center gap-2 bg-primary/80 text-primary-foreground px-8 py-3 hover:bg-primary/90 transition-colors rounded-sm cursor-pointer"
               >
-                Contáctame
-              </Link>
+                <Download size={18} />
+                Descargar CV
+              </button>
               <Link
                 to="/"
                 hash="projects"

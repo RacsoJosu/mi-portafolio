@@ -37,17 +37,27 @@ const Nav = React.forwardRef<HTMLElement, HeaderNavProps>(({ className, children
 ))
 Nav.displayName = 'HeaderNav'
 
-interface HeaderLinkProps extends React.AnchorHTMLAttributes<HTMLAnchorElement> {}
+interface HeaderLinkProps extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
+  active?: boolean
+}
 
-const Link = React.forwardRef<HTMLAnchorElement, HeaderLinkProps>(({ className, children, ...props }, ref) => (
-  <a
-    ref={ref}
-    className={cn('text-foreground/80 text-lg hover:text-primary transition-colors', className)}
-    {...props}
-  >
-    {children}
-  </a>
-))
+const Link = React.forwardRef<HTMLAnchorElement, HeaderLinkProps>(
+  ({ className, active, children, ...props }, ref) => (
+    <a
+      ref={ref}
+      className={cn(
+        'text-lg transition-colors',
+        active
+          ? 'text-primary font-medium'
+          : 'text-foreground/80 hover:text-primary',
+        className
+      )}
+      {...props}
+    >
+      {children}
+    </a>
+  )
+)
 Link.displayName = 'HeaderLink'
 
 export const Header = {
