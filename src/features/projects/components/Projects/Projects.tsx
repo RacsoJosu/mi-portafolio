@@ -6,7 +6,7 @@ import { ProjectCardMobile } from './ProjectCardMobile'
 
 const projects: Project[] = [
   {
-    title: 'RedMedicaTel',
+    title: 'Red Medicatel',
     description:
       'Plataforma digital de salud con sede en Honduras diseñada para facilitar el acceso a servicios médicos, conectando a pacientes con médicos especialistas y ofreciendo gestión de salud digital.',
     tech: ['Next.js', 'shadcn/ui', 'Tailwind CSS', 'TypeScript'],
