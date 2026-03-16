@@ -33,6 +33,8 @@ export const skillCategories: SkillCategory[] = [
     title: 'DevOps y Nube',
     skills: [
       { name: 'AWS CDK', icon: 'amazonaws' },
+      { name: 'AWS Api Gateway', icon: 'aws' },
+
       { name: 'AWS Lambda', icon: 'amazons3' }, // S3 is more recognizable if specific lambda fails, but let's try 'awslambda' is not on CDN
       { name: 'AWS S3', icon: 'amazons3' },
       { name: 'DynamoDB', icon: 'amazondynamodb' },
