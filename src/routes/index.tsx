@@ -5,12 +5,22 @@ import { Projects } from '@/features/projects/components/Projects'
 import { Contact } from '@/features/contact/components/Contact'
 import { Github, Linkedin, Mail, Download } from 'lucide-react'
 import cvPdf from '@/assets/docs/Currículum_Vitae_Oscar_Vallecillo.pdf'
-
+import Button from '#/shared/components/ui/button'
+import { Fragment } from 'react/jsx-runtime'
+import { ProjectCard } from '#/features/projects/components/Projects/ProjectCard'
+import { ProjectCardMobile } from '#/features/projects/components/Projects/ProjectCardMobile'
+import { projects } from '#/features/projects/components/Projects/const'
+import { useState } from 'react'
+import { skillCategories } from '#/features/skills/components/Skills/const'
+import {motion, AnimatePresence} from "motion/react"
+import { SkillCategoryGridCard } from '#/features/skills/components/Skills/SkillCategoryCard'
 export const Route = createFileRoute('/')({
   component: HomePage,
 })
 
 function HomePage() {
+    const [activeTab, setActiveTab] = useState(0)
+
   return (
     <>
       <Hero.Root id="about">
@@ -28,7 +38,7 @@ function HomePage() {
             </Hero.Subtitle>
             <Hero.Actions
             className=' flex flex-col sm:flex-row gap-4'>
-              <button
+              <Button
                 type="button"
                 onClick={async () => {
                   const res = await fetch(cvPdf)
@@ -42,11 +52,10 @@ function HomePage() {
                   link.remove()
                   URL.revokeObjectURL(url)
                 }}
-                className="inline-flex items-center gap-2 bg-primary/80 text-primary-foreground px-8 py-3 hover:bg-primary/90 transition-colors rounded-sm cursor-pointer"
               >
                 <Download size={18} />
                 Descargar CV
-              </button>
+              </Button>
               <Link
                 to="/"
                 hash="projects"
@@ -69,8 +78,90 @@ function HomePage() {
           </Hero.Main>
         </Hero.Container>
       </Hero.Root>
-      <Projects />
-      <Skills />
+      <Projects>
+
+        <Projects.Body>
+          <Projects.Title>
+          <span className="text-white">Proyectos</span>{' '}
+          <span className="text-primary">Destacados</span>
+          </Projects.Title>
+          <Projects.List>
+             {projects.map((project, idx) => (
+              <Fragment key={project.title}>
+                <ProjectCard project={project} index={idx} />
+                <ProjectCardMobile project={project} index={idx} />
+              </Fragment>
+            ))}
+
+          </Projects.List>
+        </Projects.Body>
+      </Projects>
+      <Skills >
+        <Skills.Body>
+          <Skills.Header>
+            <Skills.Header.Tittle>
+              <span className="text-primary">Habilidades</span>{' '}
+              <span className="text-muted-foreground">&</span>{' '}
+              <span className="text-white">Tecnologías</span>
+
+
+            </Skills.Header.Tittle>
+            <Skills.Header.Label>
+              Tecnologías favoritas y herramientas que utilizo para dar vida a productos digitales excepcionales.
+            </Skills.Header.Label>
+
+
+          </Skills.Header>
+
+
+
+          {/* Tabs Navigation */}
+          <div className="flex justify-center mb-12">
+            <div className="max-w-full overflow-x-auto no-scrollbar pb-2">
+              <div className="flex bg-muted/20 p-1.5 rounded-full border border-border/50 backdrop-blur-sm relative print:hidden w-max mx-auto min-w-80">
+                {skillCategories.map((category, idx) => (
+                  <button
+                    key={category.title}
+                    onClick={() => setActiveTab(idx)}
+                    className={`
+                      px-6 md:px-8 py-2.5 rounded-full text-xs md:text-sm font-medium transition-all duration-300 relative z-10 whitespace-nowrap
+                      ${activeTab === idx ? 'text-primary-foreground' : 'text-muted-foreground hover:text-white'}
+                    `}
+                  >
+                    {category.title}
+                    {activeTab === idx && (
+                      <motion.div
+                        layoutId="activeSkillTab"
+                        className="absolute inset-0 bg-primary rounded-full -z-10"
+                        transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                      />
+                    )}
+                  </button>
+                ))}
+              </div>
+            </div>
+          </div>
+
+        <div className="relative w-fit mt-6 mx-auto">
+  <AnimatePresence mode="wait">
+    {skillCategories.map((category, idx) =>
+      idx === activeTab ? (
+        <motion.div
+          key={category.title}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -20 }}
+          transition={{ duration: 0.4 }}
+        >
+          <SkillCategoryGridCard category={category} />
+        </motion.div>
+      ) : null
+    )}
+  </AnimatePresence>
+</div>
+
+        </Skills.Body>
+      </Skills>
       <Contact />
     </>
   )
