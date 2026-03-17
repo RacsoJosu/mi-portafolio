@@ -20,6 +20,7 @@ export const Route = createFileRoute('/')({
 
 function HomePage() {
     const [activeTab, setActiveTab] = useState(0)
+  const [selectedProject, setSelectedProject] = useState("")
 
   return (
     <>
@@ -89,7 +90,10 @@ function HomePage() {
              {projects.map((project, idx) => (
               <Fragment key={project.title}>
                 <ProjectCard project={project} index={idx} />
-                <ProjectCardMobile project={project} index={idx} />
+                 <ProjectCardMobile project={project} index={idx}
+                  selectedProject={selectedProject}
+                  setSelectedProject={setSelectedProject}
+                 />
               </Fragment>
             ))}
 

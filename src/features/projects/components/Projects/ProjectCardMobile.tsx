@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import { motion } from 'motion/react'
 import { ExternalLink, Github } from 'lucide-react'
 import type { Project } from './Projects.types'
@@ -7,11 +6,13 @@ import { cn } from '#/shared/components/ui/utils'
 type Props = {
   project: Project
   index: number
+  selectedProject: string
+  setSelectedProject: (selectedProject: string) => void
 }
 
 // ──────────── MOBILE COMPONENT (Click/Tap to flip with Fixed Long Height) ────────────
-export function ProjectCardMobile({ project, index }: Props) {
-  const [isFlipped, setIsFlipped] = useState(false)
+export function ProjectCardMobile({ project, index, selectedProject, setSelectedProject }: Props) {
+
 
   return (
     <motion.div
@@ -20,13 +21,21 @@ export function ProjectCardMobile({ project, index }: Props) {
       transition={{ duration: 0.6, delay: index * 0.1 }}
       viewport={{ once: true }}
       className="[perspective:1000px] w-full h-[480px] lg:hidden relative"
-      onClick={() => setIsFlipped(!isFlipped)}
+      onClick={() => {
+        if (selectedProject === project.title) {
+          setSelectedProject("")
+        } else {
+          setSelectedProject(project.title)
+        }
+      }}
+
     >
       {/* Flip wrapper */}
       <div
         className={cn(
           "relative w-full h-full transition-transform duration-700 ease-in-out [transform-style:preserve-3d]",
-          isFlipped && "[transform:rotateY(180deg)]"
+          selectedProject === project.title && "[transform:rotateY(180deg)]",
+
         )}
       >
         {/* ──────────── FRONT FACE ──────────── */}
