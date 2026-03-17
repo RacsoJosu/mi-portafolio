@@ -9,9 +9,6 @@ const queryClient = new QueryClient()
 import appCss from '../styles.css?url'
 import { Header } from '#/shared/components/Header'
 import { Footer } from '#/shared/components/Footer'
-import { useActiveSection } from '#/shared/hooks/useActiveSection'
-
-const SECTIONS = ['about', 'projects', 'habilidades', 'contact']
 
 export const Route = createRootRoute({
   head: () => ({
@@ -45,7 +42,7 @@ export const Route = createRootRoute({
 })
 
 function RootDocument({ children }: { children: React.ReactNode }) {
-  useActiveSection(SECTIONS, 'main-container')
+
   const [isMenuOpen, setIsMenuOpen] = React.useState(false)
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen)

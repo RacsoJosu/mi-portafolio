@@ -56,10 +56,13 @@ const DesktopLink = ({ className, children, ...props }: HeaderLinkProps) => {
         'after:content-[""] after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-primary after:scale-x-0 after:transition-transform after:duration-300',
         className
       )}
-      activeProps={{
-        className: 'text-primary font-medium after:scale-x-100',
+      // activeProps={{
+      //   className: 'text-primary font-medium after:scale-x-100',
+      // }}
+      inactiveProps={{
+        className: "text-foreground/70 hover:text-primary"
       }}
-      activeOptions={{ includeHash: true }}
+      // activeOptions={{ includeHash: true , exact: false}}
       {...props}
     >
       {children}
@@ -116,10 +119,10 @@ const MobileLink = ({ className, children, onClick, ...props }: HeaderLinkProps 
         'text-foreground/70 hover:text-primary hover:bg-primary/5',
         className
       )}
-      activeProps={{
-        className: 'text-primary font-medium border-primary bg-primary/10',
-      }}
-      activeOptions={{ includeHash: true }}
+      // activeProps={{
+      //   className: 'text-primary font-medium border-primary bg-primary/10',
+      // }}
+      // activeOptions={{ includeHash: true }}
       onClick={onClick}
       {...props}
     >
