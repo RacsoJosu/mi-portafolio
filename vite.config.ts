@@ -1,21 +1,42 @@
-import { tanstackStart } from '@tanstack/react-start/plugin/vite'
 import { defineConfig } from 'vite'
-import tsConfigPaths from 'vite-tsconfig-paths'
-import react from '@vitejs/plugin-react-swc'
+import { devtools } from '@tanstack/devtools-vite'
+import tsconfigPaths from 'vite-tsconfig-paths'
+import { tanstackStart } from '@tanstack/react-start/plugin/vite'
+import viteReact from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
+import netlify from '@netlify/vite-plugin-tanstack-start'
 
 export default defineConfig({
   server: {
     port: 3000,
   },
   plugins: [
+    devtools(),
+    tsconfigPaths({ projects: ['./tsconfig.json'] }),
     tailwindcss(),
-    tsConfigPaths({
-      projects: ['./tsconfig.json'],
-    }),
-    tanstackStart({
-      srcDirectory: 'src',
-    }),
-    react(),
+    tanstackStart(),
+    viteReact(),
+    netlify(),
+    {
+      name: 'tanstack-start-rollup-fix',
+      config() {
+        return {
+          build: {
+            rollupOptions: {
+              input: 'virtual:tanstack-start-client-entry',
+            },
+          },
+          environments: {
+            client: {
+              build: {
+                rollupOptions: {
+                  input: 'virtual:tanstack-start-client-entry',
+                },
+              },
+            },
+          },
+        }
+      },
+    },
   ],
 })
