@@ -1,25 +1,27 @@
 import { createFileRoute, Link } from '@tanstack/react-router'
 import { Hero } from '@/features/hero/components/Hero'
+import { ImpactSection } from '@/features/impact/components/ImpactSection'
 import { Skills } from '@/features/skills/components/Skills'
 import { Projects } from '@/features/projects/components/Projects'
 import { Contact } from '@/features/contact/components/Contact'
+import { Footer } from '@/shared/components/Footer'
 import { Github, Linkedin, Mail, Download } from 'lucide-react'
-import cvPdf from '@/assets/docs/Currículum_Oscar_Vallecillo.pdf'
-import Button from '#/shared/components/ui/button'
+
 import { Fragment } from 'react/jsx-runtime'
 import { ProjectCard } from '#/features/projects/components/Projects/ProjectCard'
 import { ProjectCardMobile } from '#/features/projects/components/Projects/ProjectCardMobile'
 import { projects } from '#/features/projects/components/Projects/const'
 import { useState } from 'react'
 import { skillCategories } from '#/features/skills/components/Skills/const'
-import {motion, AnimatePresence} from "motion/react"
+import { motion, AnimatePresence } from 'motion/react'
 import { SkillCategoryGridCard } from '#/features/skills/components/Skills/SkillCategoryCard'
+
 export const Route = createFileRoute('/')({
   component: HomePage,
 })
 
 function HomePage() {
-    const [activeTab, setActiveTab] = useState(0)
+  const [activeTab, setActiveTab] = useState(0)
   const [selectedProject, setSelectedProject] = useState("")
 
   return (
@@ -28,57 +30,55 @@ function HomePage() {
         <Hero.Background />
         <Hero.Container>
           <Hero.Main>
+            <div className="inline-block text-xs uppercase tracking-wider font-semibold text-primary mb-3 bg-primary/10 px-3 py-1.5 rounded-full border border-primary/25">
+              Tech Lead Software Engineer · Full Stack
+            </div>
             <Hero.Title>
-              <span className="text-foreground">Desarrollador</span>
+              <span className="text-foreground">Arquitectura Backend,</span>
               <br />
-              <span className="text-primary">Full Stack</span>
+              <span className="text-primary">Rendimiento & Cloud</span>
             </Hero.Title>
             <Hero.Subtitle>
-              Desarrollador full stack especializado en crear aplicaciones web
-              modernas, escalables y de alto rendimiento usando las últimas tecnologías.
+              Ingeniero en Sistemas especializado en optimización de rendimiento, diseño modular
+              de arquitecturas y sistemas serverless en AWS. Liderazgo técnico híbrido con entrega
+              activa de código y refactorizaciones en producción.
             </Hero.Subtitle>
-            <Hero.Actions
-            className=' flex flex-col sm:flex-row gap-4'>
-              <Button
-                type="button"
-                onClick={async () => {
-                  const res = await fetch(cvPdf)
-                  const blob = await res.blob()
-                  const url = URL.createObjectURL(blob)
-                  const link = document.createElement('a')
-                  link.href = url
-                  link.download = 'CV_Oscar_Vallecillo.pdf'
-                  document.body.appendChild(link)
-                  link.click()
-                  link.remove()
-                  URL.revokeObjectURL(url)
-                }}
+            <Hero.Actions className="flex flex-col sm:flex-row gap-4">
+              <a
+                href="/Curriculum_Oscar_Vallecillo.pdf"
+                download="Curriculum_Oscar_Vallecillo.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center gap-2 font-medium bg-primary text-primary-foreground px-6 py-3 rounded-md hover:bg-primary/90 transition-colors shadow-sm"
               >
                 <Download size={18} />
                 Descargar CV
-              </Button>
+              </a>
               <Link
                 to="/"
                 hash="projects"
-                className="border border-foreground text-foreground px-8 py-3 hover:bg-foreground hover:text-background transition-colors"
+                className="border border-foreground text-foreground px-8 py-3 rounded-md hover:bg-foreground hover:text-background transition-colors text-center font-medium"
               >
                 Ver proyectos
               </Link>
             </Hero.Actions>
             <Hero.Social>
-              <Hero.SocialLink href="https://github.com/RacsoJosu">
+              <Hero.SocialLink href="https://github.com/RacsoJosu" aria-label="GitHub">
                 <Github size={24} />
               </Hero.SocialLink>
-              <Hero.SocialLink href="https://www.linkedin.com/in/oscar-vallecillo-938127254/">
+              <Hero.SocialLink href="https://www.linkedin.com/in/oscar-vallecillo-938127254/" aria-label="LinkedIn">
                 <Linkedin size={24} />
               </Hero.SocialLink>
-              <Hero.SocialLink href="mailto:oscarvallecillo.dev@gmail.com">
+              <Hero.SocialLink href="mailto:oscarvallecillo95@gmail.com" aria-label="Email">
                 <Mail size={24} />
               </Hero.SocialLink>
             </Hero.Social>
           </Hero.Main>
         </Hero.Container>
       </Hero.Root>
+
+      <ImpactSection />
+
       <Projects>
 
         <Projects.Body>

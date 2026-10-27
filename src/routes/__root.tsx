@@ -21,7 +21,12 @@ export const Route = createRootRoute({
         content: 'width=device-width, initial-scale=1',
       },
       {
-        title: 'Portafolio | Oscar developer',
+        title: 'Óscar Vallecillo — Tech Lead Software Engineer | Full Stack',
+      },
+      {
+        name: 'description',
+        content:
+          'Portafolio de Óscar Vallecillo: Tech Lead Software Engineer y Full Stack Developer. Arquitectura backend, optimización de rendimiento y sistemas cloud en AWS.',
       },
     ],
     links: [
@@ -49,7 +54,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
   const closeMenu = () => setIsMenuOpen(false)
 
   return (
-    <html lang="en" data-theme="dark" suppressHydrationWarning>
+    <html lang="es" data-theme="dark" suppressHydrationWarning>
       <head>
         <script />
         <HeadContent />
@@ -63,16 +68,37 @@ function RootDocument({ children }: { children: React.ReactNode }) {
 
         <Header.DesktopNav>
           <Header.DesktopLink to="/" hash="about">Sobre mí</Header.DesktopLink>
+          <Header.DesktopLink to="/" hash="enfoque">Enfoque</Header.DesktopLink>
           <Header.DesktopLink to="/" hash="projects">Proyectos</Header.DesktopLink>
           <Header.DesktopLink to="/" hash="habilidades">Habilidades</Header.DesktopLink>
           <Header.DesktopLink to="/" hash="contact">Contacto</Header.DesktopLink>
+          <a
+            href="/Curriculum_Oscar_Vallecillo.pdf"
+            download="Curriculum_Oscar_Vallecillo.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-xs font-semibold px-3 py-1.5 rounded-full border border-primary text-primary hover:bg-primary hover:text-primary-foreground transition-all"
+          >
+            Descargar CV
+          </a>
         </Header.DesktopNav>
 
         <Header.MobileNav isOpen={isMenuOpen} onOpen={toggleMenu} onClose={closeMenu}>
           <Header.MobileLink to="/" hash="about" onClick={closeMenu}>Sobre mí</Header.MobileLink>
+          <Header.MobileLink to="/" hash="enfoque" onClick={closeMenu}>Enfoque</Header.MobileLink>
           <Header.MobileLink to="/" hash="projects" onClick={closeMenu}>Proyectos</Header.MobileLink>
           <Header.MobileLink to="/" hash="habilidades" onClick={closeMenu}>Habilidades</Header.MobileLink>
           <Header.MobileLink to="/" hash="contact" onClick={closeMenu}>Contacto</Header.MobileLink>
+          <a
+            href="/Curriculum_Oscar_Vallecillo.pdf"
+            download="Curriculum_Oscar_Vallecillo.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={closeMenu}
+            className="text-sm font-semibold px-4 py-2.5 rounded-lg border border-primary text-primary hover:bg-primary hover:text-primary-foreground transition-all text-center mt-2"
+          >
+            Descargar CV (PDF)
+          </a>
         </Header.MobileNav>
         </Header.Root>
 

@@ -20,39 +20,39 @@ export const projects: Project[] = [
     image: 'https://api.microlink.io/?url=https://shinball-fronted.vercel.app/login&screenshot=true&meta=false&embed=screenshot.url',
   },
   {
-    title: 'Store React',
+    title: 'Hilo — Chatbot WhatsApp Platform',
     description:
-      'Aplicación moderna de comercio electrónico con listado de productos, vistas detalladas y gestión de carrito de compras.',
-    tech: ['React', 'TypeScript', 'Vite', 'PNPM'],
-    github: 'https://github.com/RacsoJosu/Store-React',
-    live: 'https://store-react-alpha.vercel.app/',
-    image: 'https://api.microlink.io/?url=https://store-react-alpha.vercel.app/&screenshot=true&meta=false&embed=screenshot.url',
+      'Centro de conversaciones de WhatsApp multi-tenant con Fastify, React 19, TanStack Router/Query, PostgreSQL 17, roles seguros en runtime y autenticación MFA con TOTP.',
+    tech: ['Fastify', 'React 19', 'PostgreSQL 17', 'Docker', 'TanStack Router'],
+    github: 'https://github.com/RacsoJosu/mono-repo-chat',
+    live: 'https://github.com/RacsoJosu/mono-repo-chat',
+    image: 'https://api.microlink.io/?url=https://github.com/RacsoJosu/mono-repo-chat&screenshot=true&meta=false&embed=screenshot.url',
   },
   {
-    title: 'Pokedex App',
+    title: 'AWS Event-Driven Architecture (CDK)',
     description:
-      'Pokedex interactiva que consume la PokeAPI, con paginación y caché local mediante IndexedDB para una mejor experiencia.',
-    tech: ['React', 'Redux', 'Tailwind CSS', 'IndexedDB', 'JavaScript'],
-    github: 'https://github.com/RacsoJosu/Pokedex',
-    live: 'https://pokedex-nu-cyan.vercel.app/',
-    image: 'https://api.microlink.io/?url=https://pokedex-nu-cyan.vercel.app/&screenshot=true&meta=false&embed=screenshot.url',
+      'Plataforma serverless de reservas basada en eventos con AWS CDK (Python), Amazon EventBridge, microservicios Lambda políglotas y emulación en LocalStack.',
+    tech: ['AWS CDK', 'EventBridge', 'AWS Lambda', 'Python', 'API Gateway'],
+    github: 'https://github.com/RacsoJosu/event-driven-architecture-aws',
+    live: 'https://github.com/RacsoJosu/event-driven-architecture-aws',
+    image: 'https://api.microlink.io/?url=https://github.com/RacsoJosu/event-driven-architecture-aws&screenshot=true&meta=false&embed=screenshot.url',
+  },
+  {
+    title: 'Shiball Admin API',
+    description:
+      'API del administrativo de Shinball con OpenAPI 3.0 generado en tiempo real desde esquemas Zod y documentación interactiva con Scalar.',
+    tech: ['TypeScript', 'Node.js', 'Zod', 'OpenAPI 3.0', 'Scalar'],
+    github: 'https://github.com/RacsoJosu/shiball-admin-api',
+    live: 'https://shinball-fronted.vercel.app/login',
+    image: 'https://api.microlink.io/?url=https://shinball-fronted.vercel.app/login&screenshot=true&meta=false&embed=screenshot.url',
   },
   {
     title: 'Items Store API',
     description:
-      'API robusta para una plataforma de ventas de productos, construida con arquitectura moderna y una interfaz GraphQL.',
+      'API robusta para venta de productos con NestJS, resolvers GraphQL fuertemente tipados, persistencia en PostgreSQL y arquitectura limpia.',
     tech: ['NestJS', 'GraphQL', 'TypeScript', 'Prisma', 'PostgreSQL'],
     github: 'https://github.com/RacsoJosu/Items-Store',
     live: 'https://github.com/RacsoJosu/Items-Store',
     image: 'https://api.microlink.io/?url=https://github.com/RacsoJosu/Items-Store&screenshot=true&meta=false&embed=screenshot.url',
-  },
-  {
-    title: 'AWS Serverless CRUD',
-    description:
-      'Implementación de backend serverless para una API CRUD utilizando servicios de AWS como Lambda, DynamoDB y API Gateway.',
-    tech: ['TypeScript', 'AWS CDK', 'AWS Lambda', 'DynamoDB', 'API Gateway'],
-    github: 'https://github.com/RacsoJosu/api-gateway-dynamo-db-serverless-crud',
-    live: 'https://github.com/RacsoJosu/api-gateway-dynamo-db-serverless-crud',
-    image: 'https://api.microlink.io/?url=https://github.com/RacsoJosu/api-gateway-dynamo-db-serverless-crud&screenshot=true&meta=false&embed=screenshot.url',
   },
 ]

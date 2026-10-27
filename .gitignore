@@ -1,16 +1,11 @@
 node_modules
-.DS_Store
 dist
-dist-ssr
-*.local
-.env
+.output
 .nitro
 .tanstack
-.wrangler
-.output
-.vinxi
-__unconfig*
-todos.json
-
-# Local Netlify folder
-.netlify
+.env
+.env.*
+!.env.example
+.DS_Store
+Thumbs.db
+*.log
