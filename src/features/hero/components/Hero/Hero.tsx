@@ -1,7 +1,7 @@
 import * as React from "react";
 import { motion } from "motion/react";
 import { cn } from "@/shared/components/ui/utils";
-import developerImage from "@/assets/154e5326f390a289c0fb5388da91aa1e529cf9fa.png";
+import developerImage from "@/assets/oscar-vallecillo.jpg";
 
 import type {
   HeroRootProps,
@@ -144,6 +144,8 @@ const SocialLink = React.forwardRef<HTMLAnchorElement, HeroSocialLinkProps>(
 );
 SocialLink.displayName = "HeroSocialLink";
 
+import { FloatingMetrics } from "./FloatingMetrics";
+
 export const Hero = {
   Root,
   Background,
@@ -154,4 +156,5 @@ export const Hero = {
   Actions,
   Social,
   SocialLink,
+  FloatingMetrics,
 };

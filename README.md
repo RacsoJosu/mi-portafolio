@@ -1,6 +1,6 @@
-# Óscar Vallecillo — Portafolio de Ingeniería
+# Oscar Vallecillo — Portafolio de Ingeniería
 
-Sitio web y portafolio técnico de **Óscar Vallecillo** (Tech Lead Software Engineer | Full Stack Developer).
+Sitio web y portafolio técnico de **Oscar Vallecillo** (Tech Lead Software Engineer | Full Stack Developer).
 
 Enfocado en **arquitectura backend, optimización de rendimiento y sistemas cloud en AWS**.
 

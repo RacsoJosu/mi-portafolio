@@ -23,10 +23,17 @@ Root.displayName = 'HeaderRoot'
 interface HeaderBrandProps extends React.HTMLAttributes<HTMLDivElement> {}
 
 const Brand = React.forwardRef<HTMLDivElement, HeaderBrandProps>(({ className, ...props }, ref) => (
-  <div ref={ref} className={cn('text-xl font-bold cursor-default flex items-center', className)} {...props}>
-    <span className="text-foreground">{'<'}</span>
-    <span className="text-primary">Dev</span>
-    <span className="text-foreground">{('/>')}</span>
+  <div ref={ref} className={cn('flex items-center gap-3 cursor-default', className)} {...props}>
+    <div className="text-xl font-bold flex items-center">
+      <span className="text-foreground">{'<'}</span>
+      <span className="text-primary">Dev</span>
+      <span className="text-foreground">{('/>')}</span>
+    </div>
+    <div className="hidden lg:flex items-center gap-2 pl-3 border-l border-white/10 text-xs">
+      <span className="font-semibold text-foreground">Oscar Vallecillo</span>
+      <span className="text-muted-foreground">·</span>
+      <span className="text-primary font-mono">Tech Lead</span>
+    </div>
   </div>
 ))
 Brand.displayName = 'HeaderBrand'

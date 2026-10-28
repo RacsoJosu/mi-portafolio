@@ -21,12 +21,12 @@ export const Route = createRootRoute({
         content: 'width=device-width, initial-scale=1',
       },
       {
-        title: 'Óscar Vallecillo — Tech Lead Software Engineer | Full Stack',
+        title: 'Oscar Vallecillo — Tech Lead Software Engineer | Full Stack',
       },
       {
         name: 'description',
         content:
-          'Portafolio de Óscar Vallecillo: Tech Lead Software Engineer y Full Stack Developer. Arquitectura backend, optimización de rendimiento y sistemas cloud en AWS.',
+          'Portafolio de Oscar Vallecillo: Tech Lead Software Engineer y Full Stack Developer. Arquitectura backend, optimización de rendimiento y sistemas cloud en AWS.',
       },
     ],
     links: [
@@ -68,8 +68,9 @@ function RootDocument({ children }: { children: React.ReactNode }) {
 
         <Header.DesktopNav>
           <Header.DesktopLink to="/" hash="about">Sobre mí</Header.DesktopLink>
-          <Header.DesktopLink to="/" hash="enfoque">Enfoque</Header.DesktopLink>
+          <Header.DesktopLink to="/" hash="experiencia">Experiencia</Header.DesktopLink>
           <Header.DesktopLink to="/" hash="projects">Proyectos</Header.DesktopLink>
+          <Header.DesktopLink to="/" hash="enfoque">Enfoque</Header.DesktopLink>
           <Header.DesktopLink to="/" hash="habilidades">Habilidades</Header.DesktopLink>
           <Header.DesktopLink to="/" hash="contact">Contacto</Header.DesktopLink>
           <a
@@ -85,8 +86,9 @@ function RootDocument({ children }: { children: React.ReactNode }) {
 
         <Header.MobileNav isOpen={isMenuOpen} onOpen={toggleMenu} onClose={closeMenu}>
           <Header.MobileLink to="/" hash="about" onClick={closeMenu}>Sobre mí</Header.MobileLink>
-          <Header.MobileLink to="/" hash="enfoque" onClick={closeMenu}>Enfoque</Header.MobileLink>
+          <Header.MobileLink to="/" hash="experiencia" onClick={closeMenu}>Experiencia</Header.MobileLink>
           <Header.MobileLink to="/" hash="projects" onClick={closeMenu}>Proyectos</Header.MobileLink>
+          <Header.MobileLink to="/" hash="enfoque" onClick={closeMenu}>Enfoque</Header.MobileLink>
           <Header.MobileLink to="/" hash="habilidades" onClick={closeMenu}>Habilidades</Header.MobileLink>
           <Header.MobileLink to="/" hash="contact" onClick={closeMenu}>Contacto</Header.MobileLink>
           <a
