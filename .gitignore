@@ -3,12 +3,12 @@ dist
 .output
 .nitro
 .tanstack
+.vercel
+.netlify
 .env
 .env.*
 !.env.example
 .DS_Store
 Thumbs.db
 *.log
-
-# Local Netlify folder
-.netlify
+*.tsbuildinfo
